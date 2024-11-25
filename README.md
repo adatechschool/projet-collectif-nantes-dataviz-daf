@@ -57,3 +57,32 @@ Installé avec la commande terminal : `npm install --save-dev --save-exact prett
 Pour éviter les conflits avec eslint : commande terminal `node --eval "fs.writeFileSync('.prettierrc','{}\n')"`
 Après formatage, tout ce qui sera dans le .prettierignore ne sera pas pris en compte : commande terminal `node --eval "fs.writeFileSync('.prettierignore','# Ignore artifacts:\nbuild\ncoverage\n')"`
 
+# GIT FLOW
+
+## BRANCHES PRIMORDIALES
+
+- __main__ : branche principale à ne pas toucher *(sauf pour les mise en production)*
+
+- __dev__ : branche de développement *(à partir de laquelle on crée des branches de fonctionnalités et on merge les branches de fonctionnalités)*
+
+## BRANCHES DE FONCTIONNALITÉS
+
+- __feature/(nom-de-la-fonctionnalité-initiale-dev)__ : branche de fonctionnalité *(à partir de la branche dev)*
+
+## STAND UP MEETING
+
+- s'assurer d'avoir la dernière version de la branche dev et faire la mise à jour du backlog.
+- faire une code review de la branche dev
+
+## Processus git flow pour une nouvelle fonctionnalité
+
+1. `git checkout dev` : on se place sur la branche dev
+2. `git branch feature/(nom-de-la-fonctionnalité-initiale-dev)` : on crée une nouvelle branche de fonctionnalité
+3. `git checkout feature/(nom-de-la-fonctionnalité-initiale-dev)` : on se place sur la nouvelle branche de fonctionnalité
+4. `git add .` : on ajoute les fichiers modifiés
+5. `git commit -m "message"` : on commit les modifications
+6. `git push origin feature/(nom-de-la-fonctionnalité-initiale-dev)` : on push la branche de fonctionnalité sur le repo distant
+7. on crée une pull request sur github pour merger la branche de fonctionnalité sur la branche dev
+8. En cas de conflit, on résout le conflit en local, on commit et on push à nouveau
+9. Code review de la branche dev (en équipe)
+10. récupération des mises à jour de la branche dev
