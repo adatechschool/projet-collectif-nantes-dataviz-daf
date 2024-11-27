@@ -1,0 +1,11 @@
+:root {
+  /* COLORS */
+
+  --color-0: #19234d; /* header and footer */
+  --color-1: #24336f; /* nav links */
+  --color-2: #d5daf1; /* bg main */
+  --color-3: #f0f2fa; /* bg table row */
+
+  /* TYPO */
+  --police: "Lexend Deca", sans-serif;
+}
