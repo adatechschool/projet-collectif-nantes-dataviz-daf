@@ -1,6 +1,7 @@
 # Projet-collectif-nantes-dataviz-daf
 
 Données FBI: [Lien API](https://api.fbi.gov/wanted)
+
 Docs API: [Lien API](https://api.fbi.gov/docs)
 
 ## Vue d'ensemble
@@ -17,7 +18,13 @@ Ce projet a pour but de créer une application web de visualisation de données 
 git clone git@github.com:adatechschool/projet-collectif-nantes-dataviz-daf.git
 ```
 
-2. **Installer les dépendances**
+2. **Se déplacer dans le dossier du projet**
+
+```
+cd projet-collectif-nantes-dataviz-daf
+```
+
+3. **Installer les dépendances**
 
 ```
 npm install
@@ -138,8 +145,8 @@ git config pull.rebase true
 
 ## WIREFRAMES
 
-![wireframe - page d'accueil](assets\wireframe_accueil_daf.png)
-![wireframe - fiche individuelle](assets\wireframe_fiche_daf.png)
+![wireframe - page d'accueil](assets/wireframe_accueil_daf.png)
+![wireframe - fiche individuelle](assets/wireframe_fiche_daf.png)
 
 ## MAQUETTES
 
