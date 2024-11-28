@@ -1,31 +1,13 @@
 import dictionary from "./data/dictionary.js";
+import { addHeaderComponents } from "./js/Components.js";
+import { fetchDataByPageNumber } from "./js/fetchedData.js";
 
-async function fetchData() {
-  const RESPONSE = await fetch("https://api.fbi.gov/wanted");
-  const data = await RESPONSE.json();
-  return data;
-}
+const HEADER = addHeaderComponents();
 
 document.addEventListener("DOMContentLoaded", () => {
   const WEBSITE = document.querySelector("#Website");
   WEBSITE.innerHTML = `
-  <header>
-    <section id="logo-recherche">
-        <button type="button">DAF</button>
-        <input type="search" id="site-search"   placeholder="Recherchez ici"/>
-    </section>
-
-    <section id="description">
-    <p>Enquêtes en cours du FBI</p>
-    </section>
-    
-    <nav>
-    <ul id="nav-list">
-    
-    </ul>
-    </nav>
-    </header>
-    
+  ${HEADER}    
     <main>
     <button type="button" class="thumbnail">
     <img src="" alt="NO IMAGE" />
@@ -39,27 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     </footer>
     `;
 
-  fetchData().then((data) => {
-    let pageNumber = data.page;
-    const globalData = [];
-    const subjects = [];
-    const totalPagesNumber = Math.ceil(1028 / 20);
-
-    // on récupère toutes les données de toutes les pages l'API
-    while (pageNumber < totalPagesNumber) {
-      for (let i = 0; i < data.items.length; i++) {
-        globalData.push(data.items[i]);
-      }
-      pageNumber++;
-    }
-    // on filtre les données récupérées au dessus pour ne garder que les informations contenues dans la partie "subjects"
-    for (let i = 0; i < globalData.length; i++) {
-      subjects.push(globalData[i].subjects[0]);
-    }
-    // new Set = enlève les doublons
-    const realSubjectsArray = new Set(subjects);
-    console.log(realSubjectsArray);
-
+  fetchDataByPageNumber(1).then((data) => {
+    console.log(data);
     const navList = document.querySelector("#nav-list");
     // console.log(navList)
 
