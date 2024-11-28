@@ -1,3 +1,42 @@
 main {
-    flex: 1;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-top: 10px;
+  justify-content: center;
+}
+
+.thumbnail {
+  background-color: var(--color-2);
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.thumbnail:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition-behavior: normal, normal, normal;
+  transition-duration: 0.3s, 0.2s, 0.2s;
+  transition-timing-function: ease, ease, ease;
+  transition-property: color, transform, box-shadow;
+}
+
+.thumbnail .image-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.thumbnail .image-frame img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
