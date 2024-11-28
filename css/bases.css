@@ -5,9 +5,20 @@
   transition: background-color 0.3s ease;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: var(--police);
   background-color: var(--color-3);
+}
+
+#Website {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 ul,

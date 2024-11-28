@@ -1,21 +1,16 @@
 import dictionary from "./data/dictionary.js";
 import { addHeaderComponents } from "./js/Components.js";
 import { fetchDataByPageNumber } from "./js/fetchedData.js";
+import { addMainComponents } from "./js/Components.js"
 
 const HEADER = addHeaderComponents();
+const MAIN = addMainComponents();
 
 document.addEventListener("DOMContentLoaded", () => {
   const WEBSITE = document.querySelector("#Website");
   WEBSITE.innerHTML = `
   ${HEADER}    
-    <main>
-    <button type="button" class="thumbnail">
-    <img src="" alt="NO IMAGE" />
-    <p>nom de la personne</p>
-    </button>
-    <section id="pagination"></section>
-    </main>
-
+  ${MAIN}
     <footer>
     contact du FBI: 
     </footer>
@@ -54,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <section id="pagination"></section>`;
     });
 
+    
     //do not delete
   });
 });
