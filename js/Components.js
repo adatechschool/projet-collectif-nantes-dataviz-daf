@@ -27,4 +27,12 @@ function addPaginationComponent() {
   `;
 }
 
-export { addPaginationComponent, addHeaderComponent, addMainComponent };
+function addFooterComponent(){
+  return `<footer>
+    <section id="US_Embassy">
+      <p>Contact de l'<a href="https://fr.usembassy.gov/fr/contact-fr/">Ambassade des Etats-unis d'Amérique à Paris</a> : +33 (0)1 43 12 22 22</p>
+    </section>
+</footer>`
+}
+
+export { addHeaderComponent, addMainComponent, addPaginationComponent, addFooterComponent };
