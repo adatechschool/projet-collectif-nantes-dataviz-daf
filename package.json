@@ -1,10 +1,9 @@
 {
   "name": "projet-collectif-nantes-dataviz-daf",
   "version": "1.0.0",
-  "description": "Données météo de Nantes:  [Lien API](https://api.openweathermap.org/data/2.5/weather?lat=47.2186371&lon=-1.5541362&appid={API_KEY})",
   "main": "script.js",
   "scripts": {
-    "prettier:lint": "prettier --write --check . && eslint --fix ."
+    "prettier:lint": "prettier --write . && eslint --fix ."
   },
   "keywords": [],
   "author": "",
