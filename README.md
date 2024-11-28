@@ -126,7 +126,16 @@ Avant de commencer :
 3. `git branch feature/(nom-de-la-fonctionnalité)` : on crée une nouvelle branche de fonctionnalité
 4. `git checkout feature/(nom-de-la-fonctionnalité)` : on se place sur la nouvelle branche de fonctionnalité
 
-Après avoir effectué des modifications : 5. `npm run prettier:lint` : on formate le code et on vérifie les erreurs 6. `git add .` : on ajoute les fichiers modifiés 7. `git commit -m "message"` : on commit les modifications 8. `git push origin feature/(nom-de-la-fonctionnalité)` : on push la branche de fonctionnalité sur le repo distant 9. on crée une pull request sur github pour merger la branche de fonctionnalité sur la branche dev 10. En cas de conflit, on résout le conflit en local, on commit et on push à nouveau 11. Code review de la branche dev (en équipe) 12. récupération des mises à jour de la branche dev
+Après avoir effectué des modifications :
+
+5. `npm run prettier:lint` : on formate le code et on vérifie les erreurs
+6. `git add .` : on ajoute les fichiers modifiés
+7. `git commit -m "message"` : on commit les modifications
+8. `git push origin feature/(nom-de-la-fonctionnalité)` : on push la branche de fonctionnalité sur le repo distant
+9. on crée une pull request sur github pour merger la branche de fonctionnalité sur la branche dev
+10. En cas de conflit, on résout le conflit en local, on commit et on push à nouveau
+11. Code review de la branche dev (en équipe)
+12. récupération des mises à jour de la branche dev
 
 ## WIREFRAMES
 
