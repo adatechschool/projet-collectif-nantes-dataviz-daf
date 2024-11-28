@@ -1,34 +1,30 @@
-function addHeaderComponents() {
+function addHeaderComponent() {
   return `
-        <header>
-    <section id="logo-recherche">
-        <button type="button">DAF</button>
-        <input type="search" id="site-search"   placeholder="Recherchez ici"/>
-    </section>
-
-    <section id="description">
-    <p>Enquêtes en cours du FBI</p>
-    </section>
-    
-    <nav>
-    <ul id="nav-list">
-    
-    </ul>
-    </nav>
-    </header>`;
+    <header>
+      <section id="logo-recherche">
+          <button type="button">DAF</button>
+          <input type="search" id="site-search" placeholder="Recherchez ici"/>
+      </section>
+      <section id="description">
+        <p>Enquêtes en cours du FBI</p>
+      </section>
+      <nav>
+        <ul id="nav-list"></ul>
+      </nav>
+    </header>
+  `;
 }
-export { addHeaderComponents };
 
-function addMainComponents(){
-    return `
-    <main>
-    <button type="button" class="thumbnail">
-    <img src="" alt="NO IMAGE" />
-    <p>nom de la personne</p>
-    </button>
+function addMainComponent() {
+  return `
+    <main></main>
+  `;
+}
+
+function addPaginationComponent() {
+  return `
     <section id="pagination"></section>
-    </main>
-    `
+  `;
 }
 
-export { addMainComponents };
+export { addPaginationComponent, addHeaderComponent, addMainComponent };
