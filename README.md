@@ -119,13 +119,10 @@ git config pull.rebase true
 
 ## Processus git flow pour une nouvelle fonctionnalité
 
-Avant de commencer :
 1. `git checkout dev` : on se place sur la branche dev
 2. `git pull origin dev` : on s'assure de récupérer les mises à jour de la branche dev
 3. `git branch feature/(nom-de-la-fonctionnalité)` : on crée une nouvelle branche de fonctionnalité
 4. `git checkout feature/(nom-de-la-fonctionnalité)` : on se place sur la nouvelle branche de fonctionnalité
-
-Après avoir effectué des modifications :
 5. `npm run prettier:lint` : on formate le code et on vérifie les erreurs
 6. `git add .` : on ajoute les fichiers modifiés
 7. `git commit -m "message"` : on commit les modifications
