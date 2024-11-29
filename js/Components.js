@@ -2,7 +2,7 @@ function addHeaderComponent() {
   return `
     <header>
       <section id="logo-recherche">
-          <button type="button">DAF</button>
+          <button type="button"><img src="assets/DAF-logo.png" alt="DAF" title="Retour Accueil"/></button>
           <input type="search" id="site-search" placeholder="Recherchez ici"/>
       </section>
       <section id="description">
