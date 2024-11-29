@@ -3,20 +3,18 @@ import {
   addHeaderComponent,
   addMainComponent,
   addPaginationComponent,
-  addFooterComponent,
 } from "./js/Components.js";
 import { fetchDataByPageNumber } from "./js/fetchedData.js";
 import {
   getHtmlElement,
   displayHtmlElementContent,
-  createNavLinks,
-  getAllHtmlElements
 } from "./js/domManipulation.js";
+import { createNavLinks } from "./js/domManipulation.js";
+import { getAllHtmlElements } from "./js/domManipulation.js";
 
 const HEADER = addHeaderComponent();
 const MAIN = addMainComponent();
 const PAGINATION = addPaginationComponent();
-const FOOTER = addFooterComponent();
 
 document.addEventListener("DOMContentLoaded", () => {
   const WEBSITE = getHtmlElement("#Website");
@@ -27,7 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ${HEADER}    
     ${MAIN}
     ${PAGINATION}
-    ${FOOTER}
+    <footer>
+      contact du FBI: 
+    </footer>
   `,
   );
 
