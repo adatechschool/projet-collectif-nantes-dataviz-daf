@@ -34,6 +34,17 @@ npm install
 
 Dossier généré automatiquement avec `npm install` (terminal)
 
+#### .env
+
+- Fichier créé avec `touch .env`
+- Contient toutes les données sensibles non publiques (répertoriées dans `.gitignore`)
+- A créer sur chaque poste de travail
+
+#### .env.sample
+
+- Fichier créé avec `touch .env.sample`
+- Contient les variables d'environnement du fichier `.env` avec des indications sur les valeurs à renseigner
+
 #### .gitignore
 
 Permet de lister tous les fichiers et dossiers qui ne seront pas envoyés sur github
@@ -57,7 +68,7 @@ Ces fichiers gèrent les dépendances du projet.
 
 ```json
 "dependencies": {
-  "chart.js": "^4.4.6"
+    "chart.js": "^4.4.6"
   },
 ```
 
@@ -66,7 +77,7 @@ Ces fichiers gèrent les dépendances du projet.
 
 ```json
 "scripts": {
-  "prettier:lint": "prettier --write --check . && eslint --fix ."
+    "prettier:lint": "prettier --write --check . && eslint --fix ."
   },
 ```
 
@@ -104,13 +115,13 @@ git config pull.rebase true
 
 #### Branches primordiales
 
-- **main** : branche principale à ne pas toucher _(sauf pour les mise en production)_
+- __main__ : branche principale à ne pas toucher *(sauf pour les mise en production)*
 
-- **dev** : branche de développement _(à partir de laquelle on crée des branches de fonctionnalités et on merge les branches de fonctionnalités)_
+- __dev__ : branche de développement *(à partir de laquelle on crée des branches de fonctionnalités et on merge les branches de fonctionnalités)*
 
 #### Branches de fonctionnalités
 
-- **feature/(nom-de-la-fonctionnalité-initiale-dev)** : branche de fonctionnalité _(à partir de la branche dev)_
+- __feature/(nom-de-la-fonctionnalité-initiale-dev)__ : branche de fonctionnalité *(à partir de la branche dev)*
 
 #### Stand up meeting
 
@@ -142,15 +153,3 @@ git config pull.rebase true
 ![maquette - page d'accueil](assets/maquette-page-accueil.png)
 ![maquette - fiche individuelle](assets/maquette-page-details.png)
 
-## Annexes
-
-### .env (fichier supprimé car plus besoin)
-
-- Fichier créé avec `touch .env`
-- Contient toutes les données sensibles non publiques (répertoriées dans `.gitignore`)
-- A créer sur chaque poste de travail
-
-#### .env.sample
-
-- Fichier créé avec `touch .env.sample`
-- Contient les variables d'environnement du fichier `.env` avec des indications sur les valeurs à renseigner
