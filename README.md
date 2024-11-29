@@ -86,6 +86,3 @@ Après formatage, tout ce qui sera dans le .prettierignore ne sera pas pris en c
 8. En cas de conflit, on résout le conflit en local, on commit et on push à nouveau
 9. Code review de la branche dev (en équipe)
 10. récupération des mises à jour de la branche dev
-
-## WIREFRAME
-![wireframe - page d'accueil](projet-collectif-nantes-dataviz-daf/assets/wireframe_accueil_daf.png)
