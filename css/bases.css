@@ -3,22 +3,19 @@
   margin: 0;
   box-sizing: border-box;
   transition: background-color 0.3s ease;
-  font-family: var(--police);
 }
 
-html,
-body {
+html, body {
   height: 100%;
   margin: 0;
 }
 
 body {
+  font-family: var(--police);
   background-color: var(--color-3);
 }
 
 #Website {
-  /* max-width: 100vw;
-  overflow-x: hidden; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
