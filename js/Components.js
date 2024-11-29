@@ -18,17 +18,3 @@ function addHeaderComponents() {
     </header>`;
 }
 export { addHeaderComponents };
-
-function addMainComponents(){
-    return `
-    <main>
-    <button type="button" class="thumbnail">
-    <img src="" alt="NO IMAGE" />
-    <p>nom de la personne</p>
-    </button>
-    <section id="pagination"></section>
-    </main>
-    `
-}
-
-export { addMainComponents };
