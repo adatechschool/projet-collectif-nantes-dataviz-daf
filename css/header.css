@@ -51,11 +51,6 @@ nav {
   background-color: transparent;
 }
 
-#logo-recherche button img {
-  width: 100px;  
-  height:100px;
-}
-
 #logo-recherche input {
   height: 20px;
   padding: 5px;
