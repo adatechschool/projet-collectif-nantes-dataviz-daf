@@ -87,7 +87,5 @@ Après formatage, tout ce qui sera dans le .prettierignore ne sera pas pris en c
 9. Code review de la branche dev (en équipe)
 10. récupération des mises à jour de la branche dev
 
-## WIREFRAMES
-![wireframe - page d'accueil](assets\wireframe_accueil_daf.png)
-![wireframe - fiche individuelle](assets\wireframe_fiche_daf.png)
-
+## WIREFRAME
+![wireframe - page d'accueil](projet-collectif-nantes-dataviz-daf/assets/wireframe_accueil_daf.png)
