@@ -17,24 +17,30 @@ function fillHtmlElementWithNewContent(htmlElement, content) {
 }
 
 /* ———— HEADER ———— */
-function createCustomizedDropdownMenu(parentElement, labelText, optionsArray, variableName, onSelectCallback) {
-  const dropdownContainer = document.createElement('div');
-  dropdownContainer.classList.add('custom-dropdown');
+function createCustomizedDropdownMenu(
+  parentElement,
+  labelText,
+  optionsArray,
+  variableName,
+  onSelectCallback,
+) {
+  const dropdownContainer = document.createElement("div");
+  dropdownContainer.classList.add("custom-dropdown");
 
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.classList.add('dropdown-button');
+  const button = document.createElement("button");
+  button.type = "button";
+  button.classList.add("dropdown-button");
   button.textContent = labelText;
 
   // Store the original label for resetting
   button.dataset.originalLabel = labelText;
 
-  const dropdownContent = document.createElement('div');
-  dropdownContent.classList.add('dropdown-content');
+  const dropdownContent = document.createElement("div");
+  dropdownContent.classList.add("dropdown-content");
 
   optionsArray.forEach((optionValue) => {
-    const option = document.createElement('div');
-    option.classList.add('dropdown-option');
+    const option = document.createElement("div");
+    option.classList.add("dropdown-option");
     option.dataset.value = optionValue;
     option.textContent = optionValue;
     dropdownContent.appendChild(option);
@@ -45,17 +51,17 @@ function createCustomizedDropdownMenu(parentElement, labelText, optionsArray, va
   parentElement.appendChild(dropdownContainer);
 
   // Toggle dropdown visibility
-  button.addEventListener('click', () => {
-    dropdownContent.classList.toggle('show');
+  button.addEventListener("click", () => {
+    dropdownContent.classList.toggle("show");
   });
 
   // Handle option selection
-  dropdownContent.addEventListener('click', (event) => {
-    if (event.target.classList.contains('dropdown-option')) {
+  dropdownContent.addEventListener("click", (event) => {
+    if (event.target.classList.contains("dropdown-option")) {
       const selectedValue = event.target.dataset.value;
       button.textContent = `${labelText}: ${selectedValue}`;
-      button.classList.add('active');
-      dropdownContent.classList.remove('show');
+      button.classList.add("active");
+      dropdownContent.classList.remove("show");
       // Call the callback function if provided
       if (onSelectCallback) {
         onSelectCallback(variableName, selectedValue);
@@ -65,10 +71,12 @@ function createCustomizedDropdownMenu(parentElement, labelText, optionsArray, va
 }
 
 const resetDropdownOptions = () => {
-  document.querySelectorAll('.custom-dropdown .dropdown-button').forEach((button) => {
-    button.textContent = button.dataset.originalLabel;
-    button.classList.remove('active');
-  });
+  document
+    .querySelectorAll(".custom-dropdown .dropdown-button")
+    .forEach((button) => {
+      button.textContent = button.dataset.originalLabel;
+      button.classList.remove("active");
+    });
 };
 
 /* ———— MAIN ———— */
@@ -90,8 +98,15 @@ function fillMainSectionWithThumbnails(item) {
 function updatePaginationButtons(data) {
   emptyHtmlElementCurrentContent(document.querySelector("#pagination"));
 
-  for (let i = 1; i < Math.ceil(data.total / globalVariables.pageSize) + 1; i++) {
-    fillHtmlElementWithNewContent(document.querySelector("#pagination"), `<button type="button">${i}</button>`);
+  for (
+    let i = 1;
+    i < Math.ceil(data.total / globalVariables.pageSize) + 1;
+    i++
+  ) {
+    fillHtmlElementWithNewContent(
+      document.querySelector("#pagination"),
+      `<button type="button">${i}</button>`,
+    );
   }
 
   document.querySelectorAll("#pagination button").forEach((button) => {
