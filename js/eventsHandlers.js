@@ -23,16 +23,16 @@ const handleClickOnLogoButton = () => {
   resetDropdownOptions();
 
   // Clear the search input field
-  document.querySelector('#site-search').value = '';
+  document.querySelector("#site-search").value = "";
 
   fetchDataBasedOnNewParameters().then(() => null);
 };
 
 const handleSearchBarInput = (event) => {
-    globalVariables.title = event.target.value.trim() || null;
-    globalVariables.pageNumber = 1;
+  globalVariables.title = event.target.value.trim() || null;
+  globalVariables.pageNumber = 1;
 
-    fetchDataBasedOnNewParameters().then(() => null);
+  fetchDataBasedOnNewParameters().then(() => null);
 };
 
 const handleFilterSelection = (variableName, selectedValue) => {
