@@ -1,124 +1,50 @@
-// import dictionary from "./data/dictionary.js";
-import {
-  addHeaderComponent,
-  addMainComponent,
-  addPaginationComponent,
-  addFooterComponent,
-} from "./js/Components.js";
-import { fetchDataByPageNumber } from "./js/fetchedData.js";
-import {
-  getHtmlElement,
-  displayHtmlElementContent,
-  createNavLinks,
-  getAllHtmlElements
-} from "./js/domManipulation.js";
+// script.js
 
-const HEADER = addHeaderComponent();
-const MAIN = addMainComponent();
-const PAGINATION = addPaginationComponent();
-const FOOTER = addFooterComponent();
+// import { possible_countries } from "./js/data.js";
+// import { fetchDataBasedOnInitialParameters } from "./js/fetchedData.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const WEBSITE = getHtmlElement("#Website");
+import { handleDisplayOfWebsite } from "./js/eventsHandlers.js";
 
-  displayHtmlElementContent(
-    WEBSITE,
-    `
-    ${HEADER}    
-    ${MAIN}
-    ${PAGINATION}
-    ${FOOTER}
-  `,
-  );
+document.addEventListener("DOMContentLoaded", handleDisplayOfWebsite);
 
-  let pageNumber = 1;
-  fetchDataByPageNumber(pageNumber).then((data) => {
-    const navList = getHtmlElement("#nav-list");
+/* ———— Do not delete — keep it commented instead ———— */
 
-    createNavLinks(navList);
+// fetchDataBasedOnInitialParameters()
+//   .then((data) => {
+//     console.log("data", data);
+//     console.log("length before", possible_countries.length);
+//     data.items.forEach((item) => {
+//       if (!possible_countries.includes(item.possible_countries)) {
+//         possible_countries.push(item.possible_countries);
+//       }
+//     });
+//     console.log(possible_countries);
+//     console.log("length after", possible_countries.length);
+//   })
+//   .catch((error) => {
+//     console.error("error:", error);
+//   });
 
-    const BUTTONS_NAV_HTML = getAllHtmlElements(".nav-link");
+// fetchDataBasedOnInitialParameters()
+//   .then((data) => {
+//     console.log("data", data);
+//     console.log("length before", possible_countries.length);
 
-    BUTTONS_NAV_HTML.forEach((button) => {
-      button.addEventListener("click", () => {
-        const MAIN = document.querySelector("main");
-        displayHtmlElementContent(
-          MAIN,
-          `
-          <p>${button.textContent}</p>
-          `,
-        );
-      });
-    });
+//     data.items.forEach((item) => {
+//       if (item.possible_countries) {
+//         item.possible_countries.forEach((country) => {
+//           if (!possible_countries.includes(country)) {
+//             possible_countries.push(country);
+//           }
+//         });
+//       }
+//     });
 
-    const LOGO = document.querySelector("#logo-recherche button");
-    const htmlMain = document.querySelector("main");
-    LOGO.addEventListener("click", () => {
-      htmlMain.innerHTML = "";
-      data.items.forEach((item) => {
-        htmlMain.innerHTML += `
-          <button type="button" class="thumbnail">
-          <div class="image-frame">
-          <img src="${item.images[0].large}" alt="NO IMAGE" />
-    </div>
-    <p>${item.title}</p>
-    </button>`;
-      });
-    });
+//     console.log(possible_countries);
+//     console.log("length after", possible_countries.length);
+//   })
+//   .catch((error) => {
+//     console.error("error:", error);
+//   });
 
-    htmlMain.innerHTML = "";
-    data.items.forEach((item) => {
-      htmlMain.innerHTML += `
-          <button type="button" class="thumbnail">
-          <div class="image-frame">
-          <img src="${item.images[0].large}" alt="NO IMAGE" />
-    </div>
-    <p>${item.title}</p>
-    </button>
-    `;
-    });
-    const htmlPagination = document.querySelector("#pagination");
-    for (let i = 1; i < Math.ceil(data.total / data.items.length) + 1; i++) {
-      htmlPagination.innerHTML += `<button type="button">${i}</button>
-    `;
-    }
-
-    const paginationButtons = document.querySelectorAll("#pagination button");
-    paginationButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        pageNumber = parseInt(button.textContent);
-
-        fetchDataByPageNumber(pageNumber).then((data) => {
-          const LOGO = document.querySelector("#logo-recherche button");
-          const htmlMain = document.querySelector("main");
-          LOGO.addEventListener("click", () => {
-            htmlMain.innerHTML = "";
-            data.items.forEach((item) => {
-              htmlMain.innerHTML += `
-          <button type="button" class="thumbnail">
-          <div class="image-frame">
-          <img src="${item.images[0].large}" alt="NO IMAGE" />
-    </div>
-    <p>${item.title}</p>
-    </button>`;
-            });
-          });
-
-          htmlMain.innerHTML = "";
-          data.items.forEach((item) => {
-            htmlMain.innerHTML += `
-          <button type="button" class="thumbnail">
-          <div class="image-frame">
-          <img src="${item.images[0].large}" alt="NO IMAGE" />
-    </div>
-    <p>${item.title}</p>
-    </button>
-    `;
-          });
-        });
-      });
-    });
-
-    //do not delete
-  });
-});
+/* ———————————————————————————————————————————————— */
