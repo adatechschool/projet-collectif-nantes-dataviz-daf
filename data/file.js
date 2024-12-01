@@ -96,7 +96,6 @@ const posters_classifications = [
   "ecap",
 ];
 
-
 const possible_states = [
   null,
   "US-FL",

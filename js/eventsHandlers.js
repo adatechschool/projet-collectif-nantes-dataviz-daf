@@ -47,23 +47,41 @@ const handleDisplayOfWebsite = () => {
     `,
   );
 
-  document.querySelector("#logo-recherche button").addEventListener(
-    "click",
-    handleClickOnLogoButton,
+  document
+    .querySelector("#logo-recherche button")
+    .addEventListener("click", handleClickOnLogoButton);
+
+  createCustomizedDropdownMenu(
+    document.querySelector("nav#filters"),
+    "Race",
+    races,
+    "race",
+    handleFilterSelection,
+  );
+  createCustomizedDropdownMenu(
+    document.querySelector("nav#filters"),
+    "Eyes",
+    eyesColors,
+    "eyes",
+    handleFilterSelection,
+  );
+  createCustomizedDropdownMenu(
+    document.querySelector("nav#filters"),
+    "Hair",
+    hairs,
+    "hair",
+    handleFilterSelection,
   );
 
-  createCustomizedDropdownMenu(document.querySelector("nav#filters"), "Race", races, "race", handleFilterSelection);
-  createCustomizedDropdownMenu(document.querySelector("nav#filters"), "Eyes", eyesColors, "eyes", handleFilterSelection);
-  createCustomizedDropdownMenu(document.querySelector("nav#filters"), "Hair", hairs, "hair", handleFilterSelection);
-
-  document.addEventListener('click', function (event) {
-    document.querySelectorAll('.custom-dropdown .dropdown-content').forEach((dropdownContent) => {
-      if (!dropdownContent.parentElement.contains(event.target)) {
-        dropdownContent.classList.remove('show');
-      }
-    });
+  document.addEventListener("click", function (event) {
+    document
+      .querySelectorAll(".custom-dropdown .dropdown-content")
+      .forEach((dropdownContent) => {
+        if (!dropdownContent.parentElement.contains(event.target)) {
+          dropdownContent.classList.remove("show");
+        }
+      });
   });
-
 
   fetchDataBasedOnNewParameters().then(() => null);
 };
