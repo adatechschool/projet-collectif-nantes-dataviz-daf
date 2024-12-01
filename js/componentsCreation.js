@@ -4,7 +4,7 @@ const HEADER = `
   <header>
     <section id="logo-recherche">
       <button type="button">DAF</button>
-      <input type="search" id="site-search" placeholder="Search by ..."/>
+      <input type="search" id="site-search" placeholder="Search by title"/>
     </section>
     <section id="description">
       <h1>Ongoing FBI investigations</h1>
