@@ -85,10 +85,10 @@ function fillMainSectionWithThumbnails(item) {
     document.querySelector("main"),
     `
     <button type="button" class="thumbnail">
-    <div class="image-frame">
-    <img src="${item.images[0]?.thumb}"  alt="NO IMAGE" loading="lazy" />
-    </div>
-    <p>${item.title}</p>
+      <div class="image-frame">
+        <img src="${item.images[0]?.thumb}"  alt="NO IMAGE" loading="lazy" />
+      </div>
+      <p>${item.title}</p>
     </button>
     `,
   );

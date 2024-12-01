@@ -134,15 +134,17 @@ Après avoir effectué des modifications :
 8. `git push origin feature/(nom-de-la-fonctionnalité)` : on push la branche de fonctionnalité sur le repo distant
 9. on crée une pull request sur github pour merger la branche de fonctionnalité sur la branche dev
 10. En cas de conflit, on résout le conflit en local, on commit et on push à nouveau. Pour cela, il faut:
-  - `git checkout dev` : on se place sur la branche dev
-  - `git pull origin dev` : on s'assure de récupérer les mises à jour de la branche dev
-  - `git checkout feature/(nom-de-la-fonctionnalité)` : on se place sur la branche de fonctionnalité
-  - `git rebase dev` : on rebase la branche de fonctionnalité sur la branche dev
-  - on résout les conflits en local
-  - `git add .` : on ajoute les fichiers modifiés (résolution des conflits)
-  - `git rebase --continue` : on continue le rebase
-  - `git push origin feature/(nom-de-la-fonctionnalité)` : on push la branche de fonctionnalité sur le repo distant
-  - on crée une pull request sur github pour merger la branche de fonctionnalité sur la branche dev
+
+- `git checkout dev` : on se place sur la branche dev
+- `git pull origin dev` : on s'assure de récupérer les mises à jour de la branche dev
+- `git checkout feature/(nom-de-la-fonctionnalité)` : on se place sur la branche de fonctionnalité
+- `git rebase dev` : on rebase la branche de fonctionnalité sur la branche dev
+- on résout les conflits en local
+- `git add .` : on ajoute les fichiers modifiés (résolution des conflits)
+- `git rebase --continue` : on continue le rebase
+- `git push origin feature/(nom-de-la-fonctionnalité)` : on push la branche de fonctionnalité sur le repo distant
+- on crée une pull request sur github pour merger la branche de fonctionnalité sur la branche dev
+
 11. Code review de la branche dev (en équipe)
 12. récupération des mises à jour de la branche dev
 
