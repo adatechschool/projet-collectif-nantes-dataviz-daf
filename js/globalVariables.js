@@ -52,11 +52,15 @@ function buildEndpoint() {
   }
 
   if (globalVariables.person_classification !== null) {
-    urlParameters.push(`person_classification=${globalVariables.person_classification}`);
+    urlParameters.push(
+      `person_classification=${globalVariables.person_classification}`,
+    );
   }
 
   if (globalVariables.poster_classification !== null) {
-    urlParameters.push(`poster_classification=${globalVariables.poster_classification}`);
+    urlParameters.push(
+      `poster_classification=${globalVariables.poster_classification}`,
+    );
   }
 
   if (globalVariables.status !== null) {
@@ -108,7 +112,9 @@ function buildEndpoint() {
   }
 
   if (globalVariables.possible_countries !== null) {
-    urlParameters.push(`possible_countries=${globalVariables.possible_countries}`);
+    urlParameters.push(
+      `possible_countries=${globalVariables.possible_countries}`,
+    );
   }
 
   if (globalVariables.possible_states !== null) {
