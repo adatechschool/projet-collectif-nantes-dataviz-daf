@@ -13,6 +13,28 @@ import { races, eyesColors, hairs } from "../data/file.js";
 
 /* ———————————————————————————————————————————————— */
 
+const handleClickOnLogoButton = () => {
+  globalVariables.pageNumber = 1;
+  globalVariables.title = null;
+  globalVariables.race = null;
+  globalVariables.eyes = null;
+  globalVariables.hair = null;
+
+  resetDropdownOptions();
+
+  // Clear the search input field
+  document.querySelector('#site-search').value = '';
+
+  fetchDataBasedOnNewParameters().then(() => null);
+};
+
+const handleSearchBarInput = (event) => {
+    globalVariables.title = event.target.value.trim() || null;
+    globalVariables.pageNumber = 1;
+
+    fetchDataBasedOnNewParameters().then(() => null);
+};
+
 const handleFilterSelection = (variableName, selectedValue) => {
   if (selectedValue === "") {
     globalVariables[variableName] = null;
@@ -21,17 +43,6 @@ const handleFilterSelection = (variableName, selectedValue) => {
   }
 
   globalVariables.pageNumber = 1;
-
-  fetchDataBasedOnNewParameters().then(() => null);
-};
-
-const handleClickOnLogoButton = () => {
-  globalVariables.pageNumber = 1;
-  globalVariables.race = null;
-  globalVariables.eyes = null;
-  globalVariables.hair = null;
-
-  resetDropdownOptions();
 
   fetchDataBasedOnNewParameters().then(() => null);
 };
@@ -50,6 +61,10 @@ const handleDisplayOfWebsite = () => {
   document
     .querySelector("#logo-recherche button")
     .addEventListener("click", handleClickOnLogoButton);
+
+  document
+    .querySelector("#site-search")
+    .addEventListener("input", handleSearchBarInput);
 
   createCustomizedDropdownMenu(
     document.querySelector("nav#filters"),
