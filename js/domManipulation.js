@@ -17,34 +17,57 @@ function fillHtmlElementWithNewContent(htmlElement, content) {
 }
 
 /* ———— HEADER ———— */
-function createDropdownMenu(parentElement, labelText, optionsArray, variableName) {
-  const label = document.createElement("label");
-  label.textContent = labelText;
-  label.for = variableName;
-  
-  const select = document.createElement("select");
-  select.name = variableName;
-  select.id = variableName;
-  
-  const defaultOption = document.createElement("option");
-  defaultOption.value = "";
-  defaultOption.textContent = "Any";
-  select.appendChild(defaultOption);
-  
+function createCustomizedDropdownMenu(parentElement, labelText, optionsArray, variableName, onSelectCallback) {
+  const dropdownContainer = document.createElement('div');
+  dropdownContainer.classList.add('custom-dropdown');
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.classList.add('dropdown-button');
+  button.textContent = labelText;
+
+  // Store the original label for resetting
+  button.dataset.originalLabel = labelText;
+
+  const dropdownContent = document.createElement('div');
+  dropdownContent.classList.add('dropdown-content');
+
   optionsArray.forEach((optionValue) => {
-    const option = document.createElement("option");
-    option.value = optionValue;
+    const option = document.createElement('div');
+    option.classList.add('dropdown-option');
+    option.dataset.value = optionValue;
     option.textContent = optionValue;
-    select.appendChild(option);
+    dropdownContent.appendChild(option);
   });
-  
-  parentElement.appendChild(label);
-  parentElement.appendChild(select);
+
+  dropdownContainer.appendChild(button);
+  dropdownContainer.appendChild(dropdownContent);
+  parentElement.appendChild(dropdownContainer);
+
+  // Toggle dropdown visibility
+  button.addEventListener('click', () => {
+    dropdownContent.classList.toggle('show');
+  });
+
+  // Handle option selection
+  dropdownContent.addEventListener('click', (event) => {
+    if (event.target.classList.contains('dropdown-option')) {
+      const selectedValue = event.target.dataset.value;
+      button.textContent = `${labelText}: ${selectedValue}`;
+      button.classList.add('active');
+      dropdownContent.classList.remove('show');
+      // Call the callback function if provided
+      if (onSelectCallback) {
+        onSelectCallback(variableName, selectedValue);
+      }
+    }
+  });
 }
 
 const resetDropdownOptions = () => {
-  ["race", "eyes", "hair"].forEach((id) => {
-    document.querySelector(`#${id}`).value = "";
+  document.querySelectorAll('.custom-dropdown .dropdown-button').forEach((button) => {
+    button.textContent = button.dataset.originalLabel;
+    button.classList.remove('active');
   });
 };
 
@@ -100,7 +123,7 @@ export {
   initializeHtmlElementContent,
   emptyHtmlElementCurrentContent,
   fillHtmlElementWithNewContent,
-  createDropdownMenu,
+  createCustomizedDropdownMenu,
   resetDropdownOptions,
   fillMainSectionWithThumbnails,
   updatePaginationButtons,
