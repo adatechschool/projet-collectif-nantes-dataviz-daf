@@ -25,7 +25,4 @@ async function fetchDataBasedOnNewParameters() {
   updatePaginationButtons(data);
 }
 
-export {
-  fetchDataBasedOnInitialParameters,
-  fetchDataBasedOnNewParameters,
-};
+export { fetchDataBasedOnInitialParameters, fetchDataBasedOnNewParameters };
