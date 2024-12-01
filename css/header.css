@@ -1,3 +1,5 @@
+/* css\header.css */
+
 header {
   background-color: var(--color-0);
   display: flex;
@@ -18,28 +20,29 @@ header {
   padding-bottom: 10px;
 }
 
-nav {
+nav#filters {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 10px;
 }
 
-#nav-list {
-  display: flex;
-  gap: 3px;
-}
-
-.nav-link {
+nav#filters label {
   color: var(--color-3);
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+nav#filters select {
   padding: 5px;
   border: 1px solid var(--color-2);
+  border-radius: 5px;
   background-color: var(--color-1);
-  border-bottom: 0px;
-  width: 130px;
-  height: 100%;
-  border-radius: 7px 7px 0px 0px;
+  color: var(--color-3);
 }
 
-.nav-link:hover {
+nav#filters select:hover {
   background-color: var(--color-2);
   color: var(--color-0);
 }
