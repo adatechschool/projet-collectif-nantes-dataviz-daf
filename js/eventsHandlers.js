@@ -4,7 +4,7 @@
 import { HEADER, MAIN, PAGINATION, FOOTER } from "./componentsCreation.js";
 import {
   initializeHtmlElementContent,
-  createDropdownMenu,
+  createCustomizedDropdownMenu,
   resetDropdownOptions,
 } from "./domManipulation.js";
 import { globalVariables } from "./globalVariables.js";
@@ -13,11 +13,11 @@ import { races, eyesColors, hairs } from "../data/file.js";
 
 /* ———————————————————————————————————————————————— */
 
-const handleDropdownChange = (event) => {
-  if (event.target.value === "") {
-    globalVariables[event.target.name] = null;
+const handleFilterSelection = (variableName, selectedValue) => {
+  if (selectedValue === "") {
+    globalVariables[variableName] = null;
   } else {
-    globalVariables[event.target.name] = event.target.value;
+    globalVariables[variableName] = selectedValue;
   }
 
   globalVariables.pageNumber = 1;
@@ -47,20 +47,23 @@ const handleDisplayOfWebsite = () => {
     `,
   );
 
-  createDropdownMenu(document.querySelector("#filters"), "Race", races, "race");
-  createDropdownMenu(document.querySelector("#filters"), "Eyes", eyesColors, "eyes");
-  createDropdownMenu(document.querySelector("#filters"), "Hair", hairs, "hair");
-
-  ["race", "eyes", "hair"].forEach((id) => {
-    document.querySelector(`#${id}`).addEventListener("change", (event) => {
-      handleDropdownChange(event);
-    });
-  });
-
   document.querySelector("#logo-recherche button").addEventListener(
     "click",
     handleClickOnLogoButton,
   );
+
+  createCustomizedDropdownMenu(document.querySelector("nav#filters"), "Race", races, "race", handleFilterSelection);
+  createCustomizedDropdownMenu(document.querySelector("nav#filters"), "Eyes", eyesColors, "eyes", handleFilterSelection);
+  createCustomizedDropdownMenu(document.querySelector("nav#filters"), "Hair", hairs, "hair", handleFilterSelection);
+
+  document.addEventListener('click', function (event) {
+    document.querySelectorAll('.custom-dropdown .dropdown-content').forEach((dropdownContent) => {
+      if (!dropdownContent.parentElement.contains(event.target)) {
+        dropdownContent.classList.remove('show');
+      }
+    });
+  });
+
 
   fetchDataBasedOnNewParameters().then(() => null);
 };
