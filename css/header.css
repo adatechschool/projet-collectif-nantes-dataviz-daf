@@ -25,16 +25,18 @@ nav#filters {
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
-  padding: 10px;
 }
 
 .filter-button {
-  background-color: var(--color-1);
   color: var(--color-3);
-  padding: 10px 20px;
+  padding: 5px;
+  border: 1px solid var(--color-2);
+  border-bottom: none;
+  background-color: var(--color-1);
   font-size: 16px;
-  border: none;
-  border-radius: 5px;
+  border-radius: 7px 7px 0px 0px;
+  width: 130px;
+  /* height: 100%; */
   cursor: pointer;
   transition:
     transform 0.3s ease,
@@ -65,8 +67,8 @@ nav#filters {
 }
 
 #logo-recherche button img {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  aspect-ratio: 1/1;
 }
 
 #logo-recherche input {
