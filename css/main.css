@@ -8,6 +8,10 @@ main {
   justify-content: center;
 }
 
+main .no-result {
+  align-self: center;
+}
+
 .thumbnail {
   background-color: var(--color-2);
   padding: 10px;
