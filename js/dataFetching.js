@@ -2,6 +2,7 @@
 
 import {
   emptyHtmlElementCurrentContent,
+  fillHtmlElementWithNewContent,
   fillMainSectionWithThumbnails,
   updatePaginationButtons,
 } from "./domManipulation.js";
@@ -17,6 +18,13 @@ async function fetchDataBasedOnNewParameters() {
   const data = await fetchDataBasedOnInitialParameters(buildEndpoint());
 
   emptyHtmlElementCurrentContent(document.querySelector("main"));
+
+  if (data.items.length === 0) {
+    fillHtmlElementWithNewContent(
+      document.querySelector("main"),
+      `<h1 class="no-result">No result found</h1>`,
+    );
+  }
 
   data.items.forEach((item) => {
     fillMainSectionWithThumbnails(item);
