@@ -1,47 +1,19 @@
 // js\eventsHandlers.js
 
 /* ———— IMPORTS ———— */
-import { HEADER, MAIN, PAGINATION, FOOTER } from "./componentsCreation.js";
+import { HEADER, MAIN, FOOTER } from "./componentsCreation.js";
 import {
-  createNavigationButton,
   initializeHtmlElementContent,
+  createNavigationButton,
+  resetFiltersOnWebsiteUI,
 } from "./domManipulation.js";
-import { globalVariables } from "./globalVariables.js";
+import {
+  resetInitialEndpointParameters,
+  setEndpointParameters,
+} from "./websiteStateManagement.js";
 import { fetchDataBasedOnNewParameters } from "./dataFetching.js";
 
 /* ———————————————————————————————————————————————— */
-
-const handleClickOnLogoButton = () => {
-  globalVariables.pageNumber = 1;
-  globalVariables.poster_classification = null;
-
-  document.querySelectorAll(".filter-button").forEach((button) => {
-    button.classList.remove("active");
-  });
-
-  document.querySelector("#site-search").value = "";
-
-  fetchDataBasedOnNewParameters().then(() => null);
-};
-
-const handleSearchBarInput = (event) => {
-  globalVariables.title = event.target.value || null;
-  globalVariables.pageNumber = 1;
-
-  fetchDataBasedOnNewParameters().then(() => null);
-};
-
-const handleFilterSelection = (variableName, selectedValue) => {
-  if (selectedValue === "") {
-    globalVariables[variableName] = null;
-  } else {
-    globalVariables[variableName] = selectedValue;
-  }
-
-  globalVariables.pageNumber = 1;
-
-  fetchDataBasedOnNewParameters().then(() => null);
-};
 
 const handleDisplayOfWebsite = () => {
   initializeHtmlElementContent(
@@ -49,7 +21,6 @@ const handleDisplayOfWebsite = () => {
     `
       ${HEADER}    
       ${MAIN}
-      ${PAGINATION}
       ${FOOTER}
     `,
   );
@@ -58,18 +29,27 @@ const handleDisplayOfWebsite = () => {
     .querySelector("#logo-recherche button")
     .addEventListener("click", handleClickOnLogoButton);
 
-  document
-    .querySelector("#site-search")
-    .addEventListener("input", handleSearchBarInput);
+  document.querySelector("#site-search").addEventListener("input", (event) => {
+    handleFilterSelection("title", event.target.value);
+  });
 
   createNavigationButton();
+  fetchDataBasedOnNewParameters().then(() => null);
+};
 
+const handleClickOnLogoButton = () => {
+  resetFiltersOnWebsiteUI();
+  resetInitialEndpointParameters();
+  fetchDataBasedOnNewParameters().then(() => null);
+};
+
+const handleFilterSelection = (variableName, selectedValue) => {
+  setEndpointParameters(variableName, selectedValue);
   fetchDataBasedOnNewParameters().then(() => null);
 };
 
 const handleClickOnPaginationButton = (event) => {
-  globalVariables.pageNumber = parseInt(event.currentTarget.textContent);
-
+  setEndpointParameters("page", parseInt(event.currentTarget.textContent));
   fetchDataBasedOnNewParameters().then(() => null);
 };
 

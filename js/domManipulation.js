@@ -1,11 +1,12 @@
 // js\domManipulation.js
 
 import { posters_classifications } from "../data/file.js";
+import { PAGINATION, THUMBNAIL } from "./componentsCreation.js";
 import {
   handleClickOnPaginationButton,
   handleFilterSelection,
 } from "./eventsHandlers.js";
-import { globalVariables } from "./globalVariables.js";
+import { globalVariables } from "./websiteStateManagement.js";
 
 /* ———— GENERIC ———— */
 function initializeHtmlElementContent(htmlElement, content) {
@@ -21,6 +22,13 @@ function fillHtmlElementWithNewContent(htmlElement, content) {
 }
 
 /* ———— HEADER ———— */
+function resetFiltersOnWebsiteUI() {
+  document.querySelectorAll(".filter-button").forEach((button) => {
+    button.classList.remove("active");
+  });
+  document.querySelector("#site-search").value = "";
+}
+
 function createNavigationButton() {
   posters_classifications.forEach((classification) => {
     const button = document.createElement("button");
@@ -57,21 +65,50 @@ function nameNavigationButton(classification) {
 
 /* ———— MAIN ———— */
 function fillMainSectionWithThumbnails(item) {
-  fillHtmlElementWithNewContent(
-    document.querySelector("main"),
-    `
-    <button type="button" class="thumbnail">
-      <div class="image-frame">
-        <img src="${item.images[0]?.thumb}"  alt="NO IMAGE" loading="lazy" />
-      </div>
-      <p>${item.title}</p>
-    </button>
-    `,
+  document
+    .querySelector("main section#thumbnails")
+    .insertAdjacentHTML("beforeend", THUMBNAIL);
+
+  document
+    .querySelector("main section#thumbnails")
+    .querySelectorAll(".thumbnail")
+    [
+      document
+        .querySelector("main section#thumbnails")
+        .querySelectorAll(".thumbnail").length - 1
+    ].querySelector(".image-frame img").src = `${item.images[0]?.thumb}`;
+
+  document
+    .querySelector("main section#thumbnails")
+    .querySelectorAll(".thumbnail")
+    [
+      document
+        .querySelector("main section#thumbnails")
+        .querySelectorAll(".thumbnail").length - 1
+    ].querySelector("p").innerText = `${item.title || "Untitled"}`;
+}
+
+function updateMainSection(data) {
+  emptyHtmlElementCurrentContent(
+    document.querySelector("main section#thumbnails"),
   );
+
+  if (data.items.length === 0) {
+    fillHtmlElementWithNewContent(
+      document.querySelector("main section#thumbnails"),
+      `<h1 class="no-result">No result found</h1>`,
+    );
+  }
+
+  data.items.forEach((item) => {
+    fillMainSectionWithThumbnails(item);
+  });
 }
 
 /* ———— PAGINATION ———— */
 function updatePaginationButtons(data) {
+  document.querySelector("main").insertAdjacentHTML("beforeend", PAGINATION);
+
   emptyHtmlElementCurrentContent(document.querySelector("#pagination"));
 
   for (
@@ -114,9 +151,11 @@ export {
   initializeHtmlElementContent,
   emptyHtmlElementCurrentContent,
   fillHtmlElementWithNewContent,
+  resetFiltersOnWebsiteUI,
   createNavigationButton,
   nameNavigationButton,
   fillMainSectionWithThumbnails,
+  updateMainSection,
   updatePaginationButtons,
   displayPaginationButtons,
 };
