@@ -1,12 +1,10 @@
 // js\dataFetching.js
 
 import {
-  emptyHtmlElementCurrentContent,
-  fillHtmlElementWithNewContent,
-  fillMainSectionWithThumbnails,
+  updateMainSection,
   updatePaginationButtons,
 } from "./domManipulation.js";
-import { buildEndpoint } from "./globalVariables.js";
+import { buildEndpoint } from "./websiteStateManagement.js";
 
 async function fetchDataBasedOnInitialParameters(url = buildEndpoint()) {
   const response = await fetch(url);
@@ -17,19 +15,7 @@ async function fetchDataBasedOnInitialParameters(url = buildEndpoint()) {
 async function fetchDataBasedOnNewParameters() {
   const data = await fetchDataBasedOnInitialParameters(buildEndpoint());
 
-  emptyHtmlElementCurrentContent(document.querySelector("main"));
-
-  if (data.items.length === 0) {
-    fillHtmlElementWithNewContent(
-      document.querySelector("main"),
-      `<h1 class="no-result">No result found</h1>`,
-    );
-  }
-
-  data.items.forEach((item) => {
-    fillMainSectionWithThumbnails(item);
-  });
-
+  updateMainSection(data);
   updatePaginationButtons(data);
 }
 
