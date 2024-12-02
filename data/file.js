@@ -85,12 +85,12 @@ const field_offices = [
 const persons_classifications = ["Main", "Victim"];
 
 const posters_classifications = [
-  "default",
+  // "default",
   "information",
   "missing",
-  "law-enforcement-assistance",
+  // "law-enforcement-assistance",
   "ten",
-  "crimes-against-children",
+  // "crimes-against-children",
   "terrorist",
   "kidnapping",
   "ecap",
