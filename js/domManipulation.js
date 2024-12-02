@@ -1,6 +1,10 @@
 // js\domManipulation.js
 
-import { handleClickOnPaginationButton } from "./eventsHandlers.js";
+import { posters_classifications } from "../data/file.js";
+import {
+  handleClickOnPaginationButton,
+  handleFilterSelection,
+} from "./eventsHandlers.js";
 import { globalVariables } from "./globalVariables.js";
 
 /* ———— GENERIC ———— */
@@ -17,67 +21,39 @@ function fillHtmlElementWithNewContent(htmlElement, content) {
 }
 
 /* ———— HEADER ———— */
-function createCustomizedDropdownMenu(
-  parentElement,
-  labelText,
-  optionsArray,
-  variableName,
-  onSelectCallback,
-) {
-  const dropdownContainer = document.createElement("div");
-  dropdownContainer.classList.add("custom-dropdown");
-
-  const button = document.createElement("button");
-  button.type = "button";
-  button.classList.add("dropdown-button");
-  button.textContent = labelText;
-
-  // Store the original label for resetting
-  button.dataset.originalLabel = labelText;
-
-  const dropdownContent = document.createElement("div");
-  dropdownContent.classList.add("dropdown-content");
-
-  optionsArray.forEach((optionValue) => {
-    const option = document.createElement("div");
-    option.classList.add("dropdown-option");
-    option.dataset.value = optionValue;
-    option.textContent = optionValue;
-    dropdownContent.appendChild(option);
-  });
-
-  dropdownContainer.appendChild(button);
-  dropdownContainer.appendChild(dropdownContent);
-  parentElement.appendChild(dropdownContainer);
-
-  // Toggle dropdown visibility
-  button.addEventListener("click", () => {
-    dropdownContent.classList.toggle("show");
-  });
-
-  // Handle option selection
-  dropdownContent.addEventListener("click", (event) => {
-    if (event.target.classList.contains("dropdown-option")) {
-      const selectedValue = event.target.dataset.value;
-      button.textContent = `${labelText}: ${selectedValue}`;
+function createNavigationButton() {
+  posters_classifications.forEach((classification) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.classList.add("filter-button");
+    button.textContent = nameNavigationButton(classification);
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".filter-button").forEach((button) => {
+        button.classList.remove("active");
+      });
       button.classList.add("active");
-      dropdownContent.classList.remove("show");
-      // Call the callback function if provided
-      if (onSelectCallback) {
-        onSelectCallback(variableName, selectedValue);
-      }
-    }
+      handleFilterSelection("poster_classification", classification);
+    });
+    document.querySelector("nav#filters").appendChild(button);
   });
 }
 
-const resetDropdownOptions = () => {
-  document
-    .querySelectorAll(".custom-dropdown .dropdown-button")
-    .forEach((button) => {
-      button.textContent = button.dataset.originalLabel;
-      button.classList.remove("active");
-    });
-};
+function nameNavigationButton(classification) {
+  switch (classification) {
+    case "information":
+      return "Information";
+    case "missing":
+      return "Missing persons";
+    case "ten":
+      return "Ten most wanted";
+    case "terrorist":
+      return "Terrorist";
+    case "kidnapping":
+      return "Kidnapping";
+    case "ecap":
+      return "Endangered children";
+  }
+}
 
 /* ———— MAIN ———— */
 function fillMainSectionWithThumbnails(item) {
@@ -138,8 +114,8 @@ export {
   initializeHtmlElementContent,
   emptyHtmlElementCurrentContent,
   fillHtmlElementWithNewContent,
-  createCustomizedDropdownMenu,
-  resetDropdownOptions,
+  createNavigationButton,
+  nameNavigationButton,
   fillMainSectionWithThumbnails,
   updatePaginationButtons,
   displayPaginationButtons,
