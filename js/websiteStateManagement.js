@@ -2,6 +2,7 @@
 
 const globalVariables = {
   url: `https://api.fbi.gov/@wanted?`,
+  total: 1028,
 
   // parameters
   title: null,
@@ -24,6 +25,7 @@ const globalVariables = {
   possible_states: null,
   reward_min: null,
   reward_max: null,
+  uid: null,
   pageSize: 50,
   page: 1,
 };

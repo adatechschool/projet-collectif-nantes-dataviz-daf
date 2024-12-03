@@ -1,7 +1,7 @@
 // js\domManipulation.js
 
 import { posters_classifications } from "../data/file.js";
-import { PAGINATION, THUMBNAIL } from "./componentsCreation.js";
+import components from "./componentsCreation.js";
 import {
   handleClickOnPaginationButton,
   handleFilterSelection,
@@ -67,7 +67,7 @@ function nameNavigationButton(classification) {
 function fillMainSectionWithThumbnails(item) {
   document
     .querySelector("main section#thumbnails")
-    .insertAdjacentHTML("beforeend", THUMBNAIL);
+    .insertAdjacentHTML("beforeend", components.THUMBNAIL);
 
   document
     .querySelector("main section#thumbnails")
@@ -105,22 +105,39 @@ function updateMainSection(data) {
   });
 }
 
-/* ———— PAGINATION ———— */
-function updatePaginationButtons(data) {
-  document.querySelector("main").insertAdjacentHTML("beforeend", PAGINATION);
+/* ———— components.PAGINATION ———— */
+function displayPaginationButtons() {
+  const previousButton = document.querySelector(".previous");
+  const nextButton = document.querySelector(".next");
 
+  if (globalVariables.page <= 1) {
+    previousButton.style.display = "none";
+  } else {
+    previousButton.style.display = "inline-block";
+  }
+
+  if (
+    globalVariables.page >=
+    Math.ceil(globalVariables.total / globalVariables.pageSize)
+  ) {
+    nextButton.style.display = "none";
+  } else {
+    nextButton.style.display = "inline-block";
+  }
+}
+
+function updatePaginationButtons() {
   emptyHtmlElementCurrentContent(document.querySelector("#pagination"));
 
-  for (
-    let i = 1;
-    i < Math.ceil(data.total / globalVariables.pageSize) + 1;
-    i++
-  ) {
-    fillHtmlElementWithNewContent(
-      document.querySelector("#pagination"),
-      `<button type="button">${i}</button>`,
-    );
-  }
+  fillHtmlElementWithNewContent(
+    document.querySelector("#pagination"),
+    `
+        <button type="button" class="previous"><<</button>
+        <p class="page-num">${globalVariables.page}</p>
+        <button type="button" class="next">>></button>
+      `,
+  );
+  displayPaginationButtons();
 
   document.querySelectorAll("#pagination button").forEach((button) => {
     button.addEventListener("click", (event) => {

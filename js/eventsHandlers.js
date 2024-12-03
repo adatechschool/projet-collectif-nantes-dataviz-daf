@@ -1,13 +1,15 @@
 // js\eventsHandlers.js
 
 /* ———— IMPORTS ———— */
-import { HEADER, MAIN, FOOTER } from "./componentsCreation.js";
+import components from "./componentsCreation.js";
 import {
   initializeHtmlElementContent,
   createNavigationButton,
   resetFiltersOnWebsiteUI,
+  updatePaginationButtons,
 } from "./domManipulation.js";
 import {
+  globalVariables,
   resetInitialEndpointParameters,
   setEndpointParameters,
 } from "./websiteStateManagement.js";
@@ -19,9 +21,9 @@ const handleDisplayOfWebsite = () => {
   initializeHtmlElementContent(
     document.querySelector("#Website"),
     `
-      ${HEADER}    
-      ${MAIN}
-      ${FOOTER}
+      ${components.HEADER}    
+      ${components.MAIN}
+      ${components.FOOTER}
     `,
   );
 
@@ -33,7 +35,12 @@ const handleDisplayOfWebsite = () => {
     handleFilterSelection("title", event.target.value);
   });
 
+  document
+    .querySelector("main")
+    .insertAdjacentHTML("beforeend", components.PAGINATION);
+
   createNavigationButton();
+  updatePaginationButtons();
   fetchDataBasedOnNewParameters().then(() => null);
 };
 
@@ -49,7 +56,17 @@ const handleFilterSelection = (variableName, selectedValue) => {
 };
 
 const handleClickOnPaginationButton = (event) => {
-  setEndpointParameters("page", parseInt(event.currentTarget.textContent));
+  console.log(event.target);
+  if (event.target.classList.contains("previous")) {
+    globalVariables.page--;
+  }
+
+  if (event.target.classList.contains("next")) {
+    globalVariables.page++;
+  }
+
+  document.querySelector(".page-num").textContent = globalVariables.page;
+  setEndpointParameters("page", globalVariables.page);
   fetchDataBasedOnNewParameters().then(() => null);
 };
 
