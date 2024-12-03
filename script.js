@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // for (let i = 1; i < Math.ceil(data.total / data.items.length) + 1; i++) {
     htmlPagination.innerHTML = `
       <button type="button" class="previous"><<</button>
-      <button type="button" class="page-num">${pageNumber}</button>
+      <p class="page-num">${pageNumber}</p>
       <button type="button" class="next">>></button>
       `;
     document.querySelector(".previous").style.display = "none";
