@@ -6,7 +6,6 @@ import {
   initializeHtmlElementContent,
   createNavigationButton,
   resetFiltersOnWebsiteUI,
-  updatePaginationButtons,
 } from "./domManipulation.js";
 import {
   globalVariables,
@@ -40,7 +39,6 @@ const handleDisplayOfWebsite = () => {
     .insertAdjacentHTML("beforeend", components.PAGINATION);
 
   createNavigationButton();
-  updatePaginationButtons();
   fetchDataBasedOnNewParameters().then(() => null);
 };
 
