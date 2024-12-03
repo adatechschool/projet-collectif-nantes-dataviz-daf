@@ -36,8 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchDataByPageNumber(pageNumber).then((data) => {
     const navList = getHtmlElement("#nav-list");
-    let totalPages = Math.ceil(data.total / data.items.length);
-    
+
     createNavLinks(navList);
 
     const BUTTONS_NAV_HTML = getAllHtmlElements(".nav-link");
