@@ -26,6 +26,7 @@ function resetFiltersOnWebsiteUI() {
   document.querySelectorAll(".filter-button").forEach((button) => {
     button.classList.remove("active");
   });
+
   document.querySelector("#site-search").value = "";
 }
 
@@ -112,7 +113,7 @@ function updateMainSection(data) {
 }
 
 /* ———— PAGINATION ———— */
-function displayPaginationButtons() {
+function displayPaginationButtons(data) {
   const previousButton = document.querySelector(".previous");
   const nextButton = document.querySelector(".next");
 
@@ -124,7 +125,7 @@ function displayPaginationButtons() {
 
   if (
     globalVariables.page >=
-    Math.ceil(globalVariables.total / globalVariables.pageSize)
+    Math.ceil(data.total / globalVariables.pageSize)
   ) {
     nextButton.style.display = "none";
   } else {
@@ -132,7 +133,7 @@ function displayPaginationButtons() {
   }
 }
 
-function updatePaginationButtons() {
+function updatePaginationButtons(data) {
   emptyHtmlElementCurrentContent(document.querySelector("#pagination"));
 
   fillHtmlElementWithNewContent(
@@ -143,7 +144,8 @@ function updatePaginationButtons() {
         <button type="button" class="next">>></button>
       `,
   );
-  displayPaginationButtons();
+
+  displayPaginationButtons(data);
 
   document.querySelectorAll("#pagination button").forEach((button) => {
     button.addEventListener("click", (event) => {

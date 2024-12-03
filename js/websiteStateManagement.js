@@ -2,7 +2,6 @@
 
 const globalVariables = {
   url: `https://api.fbi.gov/@wanted?`,
-  total: 1028,
 
   // parameters
   title: null,
@@ -78,6 +77,11 @@ function setEndpointParameters(variableName, selectedValue) {
 
 function resetInitialEndpointParameters() {
   for (const key in globalVariables) {
+    if (key === "page") {
+      globalVariables.page = 1;
+      continue;
+    }
+
     if (key === "url" || key === "pageSize") {
       continue;
     }
