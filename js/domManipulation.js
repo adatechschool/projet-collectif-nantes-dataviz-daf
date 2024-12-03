@@ -154,24 +154,6 @@ function updatePaginationButtons(data) {
   });
 }
 
-// MAIN
-function displayPaginationButtons(pageNumber) {
-  const previousButton = document.querySelector(".previous");
-  const nextButton = document.querySelector(".next");
-
-  if (pageNumber <= 1) {
-    previousButton.style.display = "none";
-  } else {
-    previousButton.style.display = "inline-block";
-  }
-
-  if (pageNumber >= 52) {
-    nextButton.style.display = "none";
-  } else {
-    nextButton.style.display = "inline-block";
-  }
-}
-
 export {
   initializeHtmlElementContent,
   emptyHtmlElementCurrentContent,
