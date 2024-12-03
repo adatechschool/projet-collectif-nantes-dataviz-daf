@@ -33,7 +33,7 @@ const THUMBNAIL = `
 
 const PAGINATION = `
 <div id="pagination-container">
-<section id="pagination"></section>
+  <section id="pagination"></section>
 </div>
 `;
 /* ——————————— */
@@ -46,4 +46,25 @@ const FOOTER = `
   </footer>
 `;
 
-export { HEADER, MAIN, THUMBNAIL, PAGINATION, FOOTER };
+const components = {
+  HEADER,
+  MAIN,
+  THUMBNAIL,
+  PAGINATION,
+  FOOTER,
+};
+
+/*
+  <main id="details">
+    <h1 id="title"></h1>
+    <section id="image-paragraph">
+      <div id="image-container">
+        <img src="" alt="NO IMAGE" />
+      </div>
+      <p id="description"></p>
+    </section>
+    <></>
+  </main>
+*/
+
+export default components;
