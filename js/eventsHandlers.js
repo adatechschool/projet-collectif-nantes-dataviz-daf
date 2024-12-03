@@ -56,7 +56,6 @@ const handleFilterSelection = (variableName, selectedValue) => {
 };
 
 const handleClickOnPaginationButton = (event) => {
-  console.log(event.target);
   if (event.target.classList.contains("previous")) {
     globalVariables.page--;
   }
