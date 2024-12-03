@@ -61,6 +61,12 @@ function nameNavigationButton(classification) {
     case "ecap":
       return "Endangered children";
   }
+
+  document.querySelectorAll("#pagination button").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      handleClickOnPaginationButton(event);
+    });
+  });
 }
 
 /* ———— MAIN ———— */
