@@ -111,7 +111,7 @@ function updateMainSection(data) {
   });
 }
 
-/* ———— components.PAGINATION ———— */
+/* ———— PAGINATION ———— */
 function displayPaginationButtons() {
   const previousButton = document.querySelector(".previous");
   const nextButton = document.querySelector(".next");
