@@ -6,13 +6,15 @@ import {
   initializeHtmlElementContent,
   createNavigationButton,
   resetFiltersOnWebsiteUI,
+  displayItemDetails,
+  resetMainContent,
 } from "./domManipulation.js";
 import {
   globalVariables,
   resetInitialEndpointParameters,
   setEndpointParameters,
 } from "./websiteStateManagement.js";
-import { fetchDataBasedOnNewParameters } from "./dataFetching.js";
+import { fetchDataBasedOnNewParameters, fetchItemDetails } from "./dataFetching.js";
 
 /* ———————————————————————————————————————————————— */
 
@@ -44,13 +46,21 @@ const handleDisplayOfWebsite = () => {
 
 const handleClickOnLogoButton = () => {
   resetFiltersOnWebsiteUI();
+  resetMainContent();
   resetInitialEndpointParameters();
   fetchDataBasedOnNewParameters().then(() => null);
 };
 
 const handleFilterSelection = (variableName, selectedValue) => {
+  resetMainContent();
   setEndpointParameters(variableName, selectedValue);
   fetchDataBasedOnNewParameters().then(() => null);
+};
+
+const handleClickOnThumbnail = (item) => {
+  fetchItemDetails(item.pathId).then((itemDetails) => {
+    displayItemDetails(itemDetails);
+  });
 };
 
 const handleClickOnPaginationButton = (event) => {
@@ -71,5 +81,6 @@ export {
   handleDisplayOfWebsite,
   handleClickOnLogoButton,
   handleFilterSelection,
+  handleClickOnThumbnail,
   handleClickOnPaginationButton,
 };

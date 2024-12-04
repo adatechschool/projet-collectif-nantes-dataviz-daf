@@ -16,11 +16,24 @@ const HEADER = `
 `;
 
 /* ———— MAIN ———— */
-const PERSONDETAILS = `
-<section id="details">
-<img src="" alt="texte alternatif" />
-<p class="description"></p>
-</section>
+const PERSON_DETAILS = `
+  <section id="details">
+    <div class="name-container">
+      <h1></h1>
+    </div>
+    <div class="informations">
+      <div class="image-container">
+        <img src="" alt="NO IMAGE" />
+      </div>
+      <div class="paragraphs">
+        <p><strong>Description:</strong></p>
+        <p><strong>Caution:</strong></p>
+        <p><strong>Details:</strong></p>
+        <p><strong>Remarks:</strong></p>
+      </div>
+    </div>
+    <table></table>
+  </section>
 `;
 
 const MAIN = `
@@ -56,7 +69,7 @@ const FOOTER = `
 const components = {
   HEADER,
   MAIN,
-  PERSONDETAILS,
+  PERSON_DETAILS,
   THUMBNAIL,
   PAGINATION,
   FOOTER,

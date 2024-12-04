@@ -19,4 +19,10 @@ async function fetchDataBasedOnNewParameters() {
   updatePaginationButtons(data);
 }
 
-export { fetchDataBasedOnInitialParameters, fetchDataBasedOnNewParameters };
+async function fetchItemDetails(pathId) {
+  const response = await fetch(pathId);
+  const itemDetails = await response.json();
+  return itemDetails;
+}
+
+export { fetchDataBasedOnInitialParameters, fetchDataBasedOnNewParameters, fetchItemDetails };
