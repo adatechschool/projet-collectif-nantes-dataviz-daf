@@ -16,6 +16,13 @@ const HEADER = `
 `;
 
 /* ———— MAIN ———— */
+const PERSONDETAILS = `
+<section id="details">
+<img src="" alt="texte alternatif" />
+<p class="description"></p>
+</section>
+`;
+
 const MAIN = `
   <main>
     <section id="thumbnails"></section>
@@ -47,11 +54,12 @@ const FOOTER = `
 `;
 
 const components = {
-    HEADER,
-    MAIN,
-    THUMBNAIL,
-    PAGINATION,
-    FOOTER,
+  HEADER,
+  MAIN,
+  PERSONDETAILS,
+  THUMBNAIL,
+  PAGINATION,
+  FOOTER,
 };
 
 export default components;
