@@ -1,0 +1,65 @@
+/* css\details.css */
+
+/* Style for details page */
+#details {
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.name-container h1 {
+  text-align: center;
+  color: var(--color-0);
+  margin-bottom: 15px;
+}
+
+.informations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.image-container {
+  flex: 1 1 200px;
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.paragraphs {
+  flex: 2 1 400px;
+}
+
+.paragraphs p {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid var(--color-2);
+}
+
+th {
+  background-color: var(--color-1);
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: var(--color-3);
+}
+

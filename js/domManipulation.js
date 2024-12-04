@@ -4,6 +4,7 @@ import { posters_classifications } from "../data/file.js";
 import components from "./componentsCreation.js";
 import {
   handleClickOnPaginationButton,
+  handleClickOnThumbnail,
   handleFilterSelection,
 } from "./eventsHandlers.js";
 import { globalVariables } from "./websiteStateManagement.js";
@@ -73,16 +74,14 @@ function nameNavigationButton(classification) {
 /* ———— MAIN ———— */
 function fillMainSectionWithThumbnails(item) {
   const sectionThumbnail = document.querySelector("main section#thumbnails");
-  //console.log(sectionThumbnail)
 
   sectionThumbnail.insertAdjacentHTML("beforeend", components.THUMBNAIL);
 
   const thumbnailsArray = sectionThumbnail.
   querySelectorAll(".thumbnail");
-  console.log(thumbnailsArray)
+
   const lastThumbnail = thumbnailsArray[thumbnailsArray.length - 1]
   
-console.log(lastThumbnail)
   lastThumbnail.querySelector(
     ".image-frame img",
   ).src = `${item.images[0]?.thumb}`;
@@ -90,11 +89,8 @@ console.log(lastThumbnail)
   lastThumbnail.querySelector("p").innerText =
     `${item.title || "Untitled"}`;
 
-    lastThumbnail.addEventListener("click", ()=>{
-      emptyHtmlElementCurrentContent(document.querySelector("main"))
-      fillHtmlElementWithNewContent(document.querySelector("main"),components.PERSONDETAILS)
-      const IMAGE = document.querySelector("#details img")
-      IMAGE.src = `${item.images[0]?.large}`
+    lastThumbnail.addEventListener("click", () => {
+      handleClickOnThumbnail(item)
     })
 }
 
@@ -113,6 +109,76 @@ function updateMainSection(data) {
   data.items.forEach((item) => {
     fillMainSectionWithThumbnails(item);
   });
+}
+
+function displayItemDetails(item) {
+  const mainElement = document.querySelector("main");
+  mainElement.innerHTML = components.PERSON_DETAILS;
+
+  const detailsSection = document.querySelector("#details");
+
+  // Set name
+  detailsSection.querySelector(".name-container h1").textContent = item.title || "Untitled";
+
+  // Set image
+  const imageElement = detailsSection.querySelector(".image-container img");
+  imageElement.src = item.images?.[0]?.large || "";
+  imageElement.alt = item.title || "NO IMAGE";
+
+  // Set paragraphs
+  const paragraphs = detailsSection.querySelectorAll(".paragraphs p");
+
+  if (!item.description) {
+    paragraphs[0].style.display = "none";
+  }
+  
+  if (!item.caution) {
+    paragraphs[1].style.display = "none";
+  }
+
+  if (!item.details) {
+    paragraphs[2].style.display = "none";
+  }
+
+  if (!item.remarks) {
+    paragraphs[3].style.display = "none";
+  }
+
+  paragraphs[0].innerHTML = `<strong>Description:</strong> ${item.description || "N/A"}`;
+  paragraphs[1].innerHTML = `<strong>Caution:</strong> ${item.caution || "N/A"}`;
+  paragraphs[2].innerHTML = `<strong>Details:</strong> ${item.details || "N/A"}`;
+  paragraphs[3].innerHTML = `<strong>Remarks:</strong> ${item.remarks || "N/A"}`;
+
+  // Set table data (if available)
+  const table = detailsSection.querySelector("table");
+  
+  const tableData = [
+    { label: "Place of Birth", value: item.place_of_birth || "N/A" },
+    { label: "Race", value: item.race || "N/A" },
+    { label: "Sex", value: item.sex || "N/A" },
+    { label: "Hair", value: item.hair || "N/A" },
+    { label: "Eyes", value: item.eyes || "N/A" },
+    { label: "Person Classification", value: item.poster_classification || "N/A" },
+  ];
+
+  tableData.forEach((row) => {
+    const tableRow = table.insertRow();
+    const labelCell = tableRow.insertCell(0);
+    const valueCell = tableRow.insertCell(1);
+
+    labelCell.textContent = row.label;
+    valueCell.textContent = row.value;
+  });
+
+  // Hide the table if all fields are missing
+  if (tableData.every((row) => row.value === "N/A")) {
+    table.style.display = "none";
+  }
+}
+
+function resetMainContent() {
+  initializeHtmlElementContent(document.querySelector("main"), components.MAIN);
+  document.querySelector("main").insertAdjacentHTML("beforeend", components.PAGINATION);
 }
 
 /* ———— PAGINATION ———— */
@@ -163,8 +229,10 @@ export {
   resetFiltersOnWebsiteUI,
   createNavigationButton,
   nameNavigationButton,
+  displayItemDetails,
   fillMainSectionWithThumbnails,
   updateMainSection,
   updatePaginationButtons,
   displayPaginationButtons,
+  resetMainContent,
 };
