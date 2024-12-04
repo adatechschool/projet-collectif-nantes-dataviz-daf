@@ -61,3 +61,25 @@ input {
 *::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-0);
 }
+
+/* Reset style for table elements */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid var(--color-2);
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--color-1);
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: var(--color-3);
+}
