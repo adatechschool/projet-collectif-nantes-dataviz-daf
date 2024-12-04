@@ -72,27 +72,30 @@ function nameNavigationButton(classification) {
 
 /* ———— MAIN ———— */
 function fillMainSectionWithThumbnails(item) {
-  document
-    .querySelector("main section#thumbnails")
-    .insertAdjacentHTML("beforeend", components.THUMBNAIL);
+  const sectionThumbnail = document.querySelector("main section#thumbnails");
+  //console.log(sectionThumbnail)
 
-  document
-    .querySelector("main section#thumbnails")
-    .querySelectorAll(".thumbnail")
-    [
-      document
-        .querySelector("main section#thumbnails")
-        .querySelectorAll(".thumbnail").length - 1
-    ].querySelector(".image-frame img").src = `${item.images[0]?.thumb}`;
+  sectionThumbnail.insertAdjacentHTML("beforeend", components.THUMBNAIL);
 
-  document
-    .querySelector("main section#thumbnails")
-    .querySelectorAll(".thumbnail")
-    [
-      document
-        .querySelector("main section#thumbnails")
-        .querySelectorAll(".thumbnail").length - 1
-    ].querySelector("p").innerText = `${item.title || "Untitled"}`;
+  const thumbnailsArray = sectionThumbnail.
+  querySelectorAll(".thumbnail");
+  console.log(thumbnailsArray)
+  const lastThumbnail = thumbnailsArray[thumbnailsArray.length - 1]
+  
+console.log(lastThumbnail)
+  lastThumbnail.querySelector(
+    ".image-frame img",
+  ).src = `${item.images[0]?.thumb}`;
+
+  lastThumbnail.querySelector("p").innerText =
+    `${item.title || "Untitled"}`;
+
+    lastThumbnail.addEventListener("click", ()=>{
+      emptyHtmlElementCurrentContent(document.querySelector("main"))
+      fillHtmlElementWithNewContent(document.querySelector("main"),components.PERSONDETAILS)
+      const IMAGE = document.querySelector("#details img")
+      IMAGE.src = `${item.images[0]?.large}`
+    })
 }
 
 function updateMainSection(data) {
@@ -124,8 +127,7 @@ function displayPaginationButtons(data) {
   }
 
   if (
-    globalVariables.page >=
-    Math.ceil(data.total / globalVariables.pageSize)
+    globalVariables.page >= Math.ceil(data.total / globalVariables.pageSize)
   ) {
     nextButton.style.display = "none";
   } else {
